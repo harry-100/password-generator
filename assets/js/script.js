@@ -24,7 +24,34 @@ var generatePassword = function() {
 
   var specialChar = ["/", "[", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "-", "=", "[", "]", "{", "}", ";", ":", "\\", "|", ",", ".", "<", ">", "/", "?", "]", "+", "/"]
 
- 
+ // Generate password  based on User Input
+
+ var listOfChar = lowerCaseAlphabets;
+ if (includeUpperCase) {
+   listOfChar =  listOfChar.concat(upperCaseAlphabets);
+ };
+
+ if(includeNumbers) {
+   listOfChar = listOfChar.concat(numericArray);
+ }
+
+ if(includeSpecicalCharacters){
+   listOfChar = listOfChar.concat(specialChar); 
+ }
+
+ var maxNumber = listOfChar.length - 1;
+ console.log(maxNumber);
+ var minNumber = 0
+ var passwordChar = "";
+
+ for (var i=0; i<passwordLength; i++) {
+   charPosition = Math.floor(Math.random()*(maxNumber-minNumber) + minNumber);
+   
+   passwordChar =  passwordChar + listOfChar[charPosition];
+ };
+ console.log("the password is = ", passwordChar);
+ return passwordChar;
+} 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
